@@ -11,7 +11,6 @@ import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { LoginUserDto } from './DTO/userLogin.dto';
-import { STATUS } from 'src/utils/enum';
 import { User } from 'src/user/model/user.model';
 
 @Injectable()
@@ -19,7 +18,6 @@ export class AuthService {
   constructor(
     @InjectModel('User')
     private readonly userModel: Model<User>,
-
     private jwtService: JwtService,
   ) {}
 
@@ -27,7 +25,7 @@ export class AuthService {
     const { password, email } = loginInfo;
     const user = await this.userModel.findOne({ email }).select('+password');
 
-    if (user && user.status === STATUS.activated) {
+    if (user) {
       const testPassword = bcrypt.compareSync(password, user.password);
       if (testPassword) {
         const payload = { email: user.email, sub: user._id };
@@ -37,7 +35,7 @@ export class AuthService {
       }
     }
     throw new PreconditionFailedException(
-      'Wrong Credentials or Unconfirmed Email ! ',
+      'Wrong Credentials ! ',
     );
   }
 
@@ -56,7 +54,7 @@ export class AuthService {
       await user.model.findByIdAndUpdate(
         user.data._id,
         {
-          status: STATUS.activated,
+          status: 'ACTIVATED',
         },
         { new: true },
       );

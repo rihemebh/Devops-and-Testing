@@ -10,9 +10,7 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'),
-    }),
+  
     ConfigModule.forRoot({
       isGlobal: true,
     }),

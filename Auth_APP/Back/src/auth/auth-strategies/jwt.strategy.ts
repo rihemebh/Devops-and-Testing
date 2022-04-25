@@ -1,7 +1,6 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/user/model/user.model';
@@ -9,7 +8,6 @@ import { User } from 'src/user/model/user.model';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
-    private configService: ConfigService,
     @InjectModel('User')
     private readonly userModel: Model<User>,
   ) {
@@ -19,7 +17,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         ExtractJwt.fromUrlQueryParameter('token'),
       ]),
       ignoreExpiration: false,
-      secretOrKey: configService.get('SIGN_SECRET'),
+      secretOrKey: "Y6RqVQjXnlOkQBrDFMKATdbScugtw4T3fiFJZDrzlkgVg47N1C",
     });
   }
 

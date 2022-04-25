@@ -1,5 +1,4 @@
-import { Controller, Get, Post, Query, Req, UseGuards } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Body, Controller, Get, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from './auth-guards/jwt-auth.guard';
 import { LocalAuthGuard } from './auth-guards/local-auth.guard';
@@ -12,15 +11,14 @@ import { LoginUserDto } from './DTO/userLogin.dto';
 export class AuthController {
   public constructor(
     private readonly authService: AuthService,
-    private readonly configService: ConfigService,
   ) {}
   @ApiBody({ type: LoginUserDto })
   @UseGuards(LocalAuthGuard)
   @Post('/login')
-  async login(@GetUser() user, @Req() req) {
+  async login(@Body() user) {
     return this.authService.createToken(
       user,
-      this.configService.get('LOGIN_TOKEN_EXPIRATION'),
+      172800,
     );
   }
 

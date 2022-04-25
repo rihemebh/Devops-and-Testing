@@ -1,6 +1,7 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ApiCreatedResponse } from '@nestjs/swagger';
 import { CreateUserDto } from './Dto/user.dto';
+import { User } from './model/user.model';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -10,8 +11,14 @@ export class UserController {
   @Post('/register')
   @HttpCode(HttpStatus.CREATED)
   @ApiCreatedResponse({})
-  async shopperRregister(@Body() createShopperDto: CreateUserDto) {
-    console.log(createShopperDto);
-    return await this.userService.registerUser(createShopperDto);
+  async register(@Body() createShopperDto: CreateUserDto) {
+    return await this.userService.register(createShopperDto);
+  }
+
+  @Get()
+  async findAll(){
+
+    return this.userService.findAll();
+    
   }
 }
