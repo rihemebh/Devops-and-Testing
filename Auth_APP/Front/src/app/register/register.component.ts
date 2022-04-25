@@ -100,8 +100,6 @@ export class RegisterComponent implements OnInit {
     }
 
     addShopper() {
-
-
         this.shopperService.addShopper(this.registerFormData.value).subscribe(
             (response) => {
                 console.log(response);

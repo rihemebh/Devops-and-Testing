@@ -30,7 +30,6 @@ export class SignInComponent implements OnInit {
     constructor(
         private toastr: ToastrService,
         private signinService: SigninService,
-        private localStorageService: LocalStorageService,
         private router: Router,
     ) {
 
@@ -67,11 +66,9 @@ export class SignInComponent implements OnInit {
                         (user) => {
                             //this.localStorageService.set('role', user.role)
                             
-                            if (user.role == 'SHOPPER') {
-                                this.router.navigateByUrl('/deliveries', {state: user});
-                            } else {
-                                this.router.navigateByUrl('/store/profile', {state: user});
-                            }
+                           
+                                this.router.navigateByUrl('/user/profile', {state: user});
+                            
                             this.loading = false;
                             this.toastr.success('Welcome Back !');
                         },
@@ -101,9 +98,6 @@ export class SignInComponent implements OnInit {
         navbar.classList.remove('navbar-transparent');
     }
 
-    printPath() {
-
-    }
 
     onSubmit(formulaire: NgForm) {
         console.log(formulaire);

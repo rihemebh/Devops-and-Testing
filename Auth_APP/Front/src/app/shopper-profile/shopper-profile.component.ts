@@ -4,7 +4,6 @@ import { Location } from '@angular/common';
 import * as Rellax from 'rellax';
 import { Shopper } from '../register/DTO/shopper-register.dto';
 import { LocalStorageService } from '../sign-in/localstorage.service';
-import { ShopperProfileService } from './services/shopper-profile.service';
 import { ToastrService } from 'ngx-toastr';
 import { SafeUrl } from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
@@ -25,7 +24,7 @@ export class ShopperProfileComponent implements OnInit {
   focus;
   focus1;
   displayButton = false;
-  picture ="assets/img/placeholder.png"
+  picture ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdZSsRW8ahClgpWbdmk1wKCv_6d5ZNEf_kuZLEmarGpS7KAd8cHuXo9UPSJOy_EESmpu8&usqp=CAU"
   cinURL: string;
   page = 1;
   cin = 'assets/img/no-pic.jpg';
@@ -60,7 +59,7 @@ export class ShopperProfileComponent implements OnInit {
   constructor(private location: Location, private toastr: ToastrService,
     private signinService : SigninService,
     private LocalStorageService: LocalStorageService,
-    private shopperProfileService: ShopperProfileService) { }
+   ) { }
 
   ngOnInit() {
     console.log(this.signinService.getShopper())
@@ -71,33 +70,13 @@ export class ShopperProfileComponent implements OnInit {
     navbar.classList.add('navbar-transparent');
   
     this.user = JSON.parse(this.LocalStorageService.get('user'))
-    if (this.user.cin) {
-      this.cin = this.user.cin
-      this.cinURL = environment.apiURL +'/' +this.user.cin.filename
-      console.log(this.cinURL)
-    }
 
-    if (this.user.picture) {
-      this.picture =  environment.apiURL +'/' + this.user.picture
-    }
 
-    this.getDeliveries(2,0)
+
 
   }
 
-  getDeliveries(limit, skip) {
-    this.shopperProfileService.getDeliveries(limit,skip).subscribe(
-      (deliveries) => {
-        this.deliveries = deliveries;
-        this.collectionSize = this.deliveries.length
-    },
-      (error) => {
-      
-    })
-  }
-  openModal(){
-  
-  }
+
 
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
@@ -132,83 +111,6 @@ export class ShopperProfileComponent implements OnInit {
     this.editable = false
   }
 
-  edit() {
-    this.editable = true
-  }
-  onFileSelect(event) {
+ 
 
-    if (event.target.files.length > 0) {
-      this.file = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(this.file);
-      reader.onload = () => {
-
-        this.cinURL = reader.result as string;
-
-
-      };
-      console.log(this.cinURL)
-      this.filename = this.file.name;
-
-    }
-  }
-  onSubmit(form) {
-    const formData = new FormData();
-
-    let values = form.form.value
-
-    for (let [key, value] of Object.entries(values)) {
-      if (value !== "") {
-        if (key === "cin")
-          formData.append(key, this.file)
-        formData.append(key, value.toString())
-      }
-    }
-    this.shopperProfileService.updateProfile(formData).subscribe(
-      (response) => {
-        console.log(response)
-        localStorage.setItem('user', JSON.stringify(response))
-        this.toastr.success('Profile updated successfully')
-        this.editable = false
-      }
-      ,
-      (error) => {
-        console.log(error)
-        this.toastr.error('Something went wrong ! try again later')
-      }
-    )
-  }
-  
-  
-  onPicSelect(event) {
-    if (event.target.files.length > 0) {
-      this.file = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(this.file);
-      reader.onload = () => {
-
-        this.picture = reader.result as string;
-        this.displayButton = true
-       
-      }
-     
-
-
-    }
-  }
-  editPic() {
-    let picture = new FormData()
-picture.append('pic', this.file)
-    this.shopperProfileService.editPic(picture).subscribe(
-      (response) => {
-        console.log(response)
-        localStorage.setItem('user', JSON.stringify(response))
-        this.displayButton = false
-        this.toastr.success("Picture updated successfully")
-      },
-      (error) => {
-        this.toastr.error('Something went wrong ! ')
-      }
-    )
-  }
 }

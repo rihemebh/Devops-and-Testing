@@ -5,7 +5,6 @@ import { Role } from 'environments/constants';
 import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Shopper } from '../register/DTO/shopper-register.dto';
-import { Store } from '../delsos/store-register/DTO/store-register.dto';
 import { LoginDTO } from './DTO/login.dto';
 import { LocalStorageService } from './localstorage.service';
 import { map } from 'rxjs/operators';
@@ -41,7 +40,6 @@ export class SigninService {
   public getProfile(): Observable<Shopper> {
     return this.http.get<Shopper>(`${this.apiServerUrl}/auth/profile`)
     .pipe(map(user => {
-      this.localStorageService.set('role', user.role);
       this.localStorageService.set('user', JSON.stringify(user));
       this.shopperSubject.next(user);
       return user;
@@ -49,21 +47,11 @@ export class SigninService {
   }
 
   public logout() {
-    this.localStorageService.remove('role')
     this.localStorageService.remove('token')
     this.shopperSubject.next(null);
     this.router.navigateByUrl('/sign-in');
   }
 
-  public isShopper() {
-
-    if (this.localStorageService.get('role') == Role.shopper) {
-      return true
-    }
-    return false
-
-
-  }
   public isAuthenticated() {
     if (this.localStorageService.get('token') !== null) return true
     else return false

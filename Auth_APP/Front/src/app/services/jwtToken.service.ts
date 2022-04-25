@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AnyRecord } from 'dns';
 import jwt_decode from 'jwt-decode';
 
 @Injectable({

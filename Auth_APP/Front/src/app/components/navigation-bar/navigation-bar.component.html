@@ -21,34 +21,15 @@
             <p> Home Page</p>
           </a>
         </li>
+       
+
         <li class="nav-item">
-          <a class="nav-link" *ngIf="isAuthenticated() && isShopper()" [routerLink]="['/deliveries']" >
-            <!--    <i class="now-ui-icons shopping_box"></i> -->
-            Deliveries
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/store/register']" *ngIf="!isAuthenticated() || isShopper()">
-            <!--   <i class="fa fa-home" aria-hidden="true"></i> -->
-            Become a partner
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/shopper/register']" *ngIf="!isAuthenticated() || !isShopper()">
-            <!--   <i class="fa fa-home" aria-hidden="true"></i> -->
-            Become a shopper
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn btn-primary " *ngIf="isAuthenticated() && isShopper()"
-            [routerLink]="['/shopper/profile']" >
+          <a class="nav-link btn btn-primary " *ngIf="isAuthenticated()"
+            [routerLink]="['/user/profile']" >
             <!-- <i class="now-ui-icons users_circle-08"></i> -->
             Profile
           </a>
-          <a class="nav-link btn btn-primary " *ngIf="isAuthenticated() && !isShopper()" [routerLink]="['/store/profile']">
-            <!-- <i class="now-ui-icons users_circle-08"></i> -->
-            Profile
-          </a>
+         
         </li>
         <li class="nav-item">
           <a class="nav-link btn btn-neutral" [routerLink]="['/sign-in']" *ngIf="!isAuthenticated()">
