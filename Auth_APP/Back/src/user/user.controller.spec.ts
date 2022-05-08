@@ -1,54 +1,78 @@
-import { getModelToken, MongooseModule } from '@nestjs/mongoose';
 import { Test } from '@nestjs/testing';
-import { TestingModule } from '@nestjs/testing/testing-module';
-import { Model } from 'mongoose';
-import { LoginUserDto } from 'src/auth/DTO/userLogin.dto';
+import { userStub } from './stubs/user.stub';
 import { CreateUserDto } from './Dto/user.dto';
-import { User, UserSchema } from './model/user.model';
+import { User } from './model/user.model';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
+import { getModelToken } from '@nestjs/mongoose';
+import { UserModel } from './__mocks__/user.model';
+import { MockUserService } from './__mocks__/user.service';
 
+jest.mock('./__mocks__/user.service')
 
 describe('UserController', () => {
+
   let userController: UserController;
-  let userService : UserService;
- 
-  beforeAll(async () => {
-    const ApiServiceProvider = {
-      provide: UserService,
-      useFactory: () => ({
-        register: jest.fn((user : CreateUserDto) => {}),
-        findAll: jest.fn(()=> [])
-    
-      })
-    }
+  let userService: UserService;
+  let userModel: UserModel;
 
-
-    const app: TestingModule = await Test.createTestingModule({
-    
+  beforeEach(async () => {
+    const moduleRef = await Test.createTestingModule({
+      imports: [],
       controllers: [UserController],
-      providers: [ApiServiceProvider, 
-      
-    {
-        provide: getModelToken('User'),
-        useValue: Model
-    }],
-    }).compile();
+      providers: [UserService, {
+        provide: getModelToken("User"),
+        useClass: UserModel
+      }],
+    }).compile()
 
-    userController = app.get<UserController>(UserController);
-    userService = app.get<UserService>(UserService);
+    userController = moduleRef.get<UserController>(UserController);
+    userService = moduleRef.get<UserService>(UserService);
+    userModel = moduleRef.get<UserModel>(getModelToken("User"));
+    jest.clearAllMocks();
+  })
+
+
+  describe('get Users', () => {
+    describe('When findAll is called', () => {
+      let users: User[];
+
+      beforeEach(async () => {
+        jest.spyOn(userService, 'findAll');
+        users = await userController.findAll()
+      })
+      test('the service should be called', () => {
+        expect(userService.findAll).toHaveBeenCalled();
+      })
+      test('then it should return a list of users', () => {
+        expect(users).toEqual([userStub()])
+      })
+    })
   });
- 
 
-  describe('user', () => {
-    it('the service should be defined first ', async () => {
-      expect(userService).toBeDefined()
-    });
+  describe('Register User', () => {
+    describe('When register function is called', () => {
+    
+      let user: User;
+      let createUserDto: CreateUserDto;
 
-    it('expect to return a list ', async ()=>{
-
-        expect(await userController.findAll()).toEqual([])
-    });
-
-  });
+      beforeEach(async () => {  
+        jest.spyOn(userService, 'register');
+        createUserDto = {
+          email: userStub().email,
+          password: userStub().password,
+          name: userStub().name,
+          phoneNumber: userStub().phoneNumber,
+        }
+        user = await userController.register(createUserDto);
+      })
+      test('the service should be called', () => {
+        expect(userService.register).toHaveBeenCalledWith(createUserDto);
+      })
+      test('then it should return a user', () => {
+        expect(user).toEqual(userStub())
+      })
+    })
+  })
+  
 });

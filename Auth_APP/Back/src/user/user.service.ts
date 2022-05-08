@@ -14,15 +14,15 @@ export class UserService {
 
   async register(userData: CreateUserDto): Promise<any> {
  
-    //if (await this.userModel.findOne({ email })) {
-      //throw new ConflictException(`This email  is already used`);
-    //}
-   // const salt = await bcrypt.genSalt();
+   /* if (await this.userModel.findOne({ email:  userData.email })) {
+      throw new ConflictException(`This email  is already used`);
+    }*/
+    //const salt = await bcrypt.genSalt();
     //const hashedPassword = await bcrypt.hash(userData.password, salt);
-   /* const user = await this.userModel.create({
+    const user = await this.userModel.create({
       ...userData,
      
-    });*/
+    });
 
 
     return userData;
