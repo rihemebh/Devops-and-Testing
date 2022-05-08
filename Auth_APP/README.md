@@ -83,4 +83,5 @@ jest.mock('./__mocks__/user.service')
 
 <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/test_result.PNG" />
 
-Reference : https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
+References : 
+    - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
