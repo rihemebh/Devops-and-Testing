@@ -79,4 +79,8 @@ We used the autoMocking :
 jest.mock('./__mocks__/user.service')
 ```
 
+### Results : 
+
+<img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/test_result.PNG" />
+
 Reference : https://www.youtube.com/watch?v=1Vc6Xw8FMpg&ab_channel=MichaelGuay
