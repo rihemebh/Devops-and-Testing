@@ -6,7 +6,7 @@ This app is developed with Nest.js and Angular and tested with jest.
 
 # Unit Testing 
 
-We will create some tested on the backend modules (UserModule and AuthModule) 
+We will create some tests on the backend modules (UserModule) 
 
 1. Create mock services
 
