@@ -2,7 +2,10 @@
 # About
 This app is developed with Nest.js and Angular and tested with jest.
 
-
+## How to test it 
+- Clone the repo
+- Install dependencies : ``npm install && jest``
+- Launch test ``npm test``
 
 # Unit Testing 
 
@@ -83,5 +86,13 @@ jest.mock('./__mocks__/user.service')
 
 <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/test_result.PNG" />
 
-References : 
+#### References : 
+
     - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
+    
+    
+# Integration Testing 
+
+
+
+# E2E Testing 
