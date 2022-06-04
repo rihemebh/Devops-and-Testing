@@ -1,12 +1,22 @@
 
 # About
-This app is developed with Nest.js and Angular and tested with jest.
+This app is developed with Nest.js and Angular.
+The backend is tested with jest.
+
+## How to test it 
+- Clone the repo
+- Open the project called  back 
+- Install dependencies : ``npm install && jest``
+- Launch test ``npm test`` for unit and integration testing 
+- Launch test ``npm run test:e2e`` for unit and End to End testing 
+# Unit & Integration Testing
 
 
 
-# Unit Testing 
 
-We will create some tests on the backend modules (UserModule) 
+## Unit
+
+- Example for the User module: 
 
 1. Create mock services
 
@@ -73,15 +83,102 @@ export abstract class MockModel<T> {
     })
 ```
 
-We used the autoMocking : 
+We used the autoMocking of the service: 
 
 ```typescript
 jest.mock('./__mocks__/user.service')
 ```
+    
+    
+## Integration Testing 
 
-### Results : 
+Unlike unit testing we don't need to mock models or services.
 
-<img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/test_result.PNG" />
 
-References : 
-    - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
+```typescript
+  beforeAll(async () => {
+    const moduleRef = await Test.createTestingModule({
+      imports: [AppModule]
+    }).compile();
+
+    app = moduleRef.createNestApplication<NestExpressApplication>();
+    await app.listen(3333);
+    httpServer = app.getHttpServer();
+    dbConnection = moduleRef.get<DatabaseService>(DatabaseService).getDbHandle();
+ 
+  })
+
+```
+
+The database service is the one responsoble for the connection 
+
+Note that in the module we added : 
+
+```typescript
+ MongooseModule.forRootAsync({
+        imports: [ConfigModule],
+        useFactory: (configService: ConfigService) => ({
+          uri: configService.get('CONNECTION_STRING'),
+        }),
+        inject: [ConfigService],
+      }),
+```
+
+Example of testing : 
+
+
+```typescript
+describe('createUser', () => {
+    it('should create a user', async () => {
+      const createUserRequest: CreateUserDto = {
+        name: userStub().name,
+        email: userStub().email,
+        password: userStub().password,
+        phoneNumber: userStub().phoneNumber
+      }
+      
+      const response = await request(httpServer).post('/user/register').send(createUserRequest)
+      console.log(response.body)
+      expect(response.status).toBe(201);
+      expect(response.body).toMatchObject(createUserRequest);
+
+      const user = await dbConnection.collection('users').findOne({ email: createUserRequest.email });
+    
+      expect(user.name).toEqual(createUserRequest.name);
+    })
+  })
+})
+```
+
+   Userstub contains the user that we created for test
+   
+
+   
+ ## Results:
+ 
+ <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/result.PNG" />
+   
+# E2E Testing 
+
+Example : 
+
+```typescript
+it('should create a new user', ()=>{
+    return request(app.getHttpServer())
+    .post('/user/register')
+    .send({
+        name : "test",
+        email : "test@hotmail.com",
+        password : "12345678",
+        phoneNumber : "23569874"
+    })
+    .expect(201)
+});
+
+
+```
+
+### Results
+## References : 
+
+ - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
