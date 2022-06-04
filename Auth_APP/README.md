@@ -8,9 +8,11 @@ The backend is tested with jest.
 - Install dependencies : ``npm install && jest``
 - Launch test ``npm test``
 
-# Unit Testing 
+# Unit & Integration Testing
 
-We will create some tests on the backend modules (UserModule) 
+## Unit
+
+- Example for the User module: 
 
 1. Create mock services
 
@@ -77,22 +79,14 @@ export abstract class MockModel<T> {
     })
 ```
 
-We used the autoMocking : 
+We used the autoMocking of the service: 
 
 ```typescript
 jest.mock('./__mocks__/user.service')
 ```
-
-### Results : 
-
-<img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/test_result.PNG" />
-
-#### References : 
-
-   - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
     
     
-# Integration Testing 
+## Integration Testing 
 
 Unlike unit testing we don't need to mock models or services.
 
@@ -154,15 +148,33 @@ describe('createUser', () => {
 
    Userstub contains the user that we created for test
    
+
    
-   Result 
-   
-   <img src="https://github.com/rihemebh/Devops-and-Testing/blob/main/Auth_APP/unit_integration_result.PNG" />
-   
-   
-   
- ### Results of unit and integration testings 
+ ## Results:
  
  <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/result.PNG" />
    
 # E2E Testing 
+
+Example : 
+
+```typescript
+it('should create a new user', ()=>{
+    return request(app.getHttpServer())
+    .post('/user/register')
+    .send({
+        name : "test",
+        email : "test@hotmail.com",
+        password : "12345678",
+        phoneNumber : "23569874"
+    })
+    .expect(201)
+});
+
+
+```
+
+### Results
+## References : 
+
+ - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
