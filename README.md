@@ -3,7 +3,7 @@
 NOTE: PLEASE CHECK THE APP FOLDER TO SEE MORE DETAILS ABOUT THE IMPLEMENTATION OR CLICK [HERE](https://github.com/rihemebh/Devops-and-Testing/blob/main/Auth_APP/README.md)
 
 ## Table od content
-
+- [0. Tools and prerequisite](#0-tools-and-prerequisite)
 - [1. Testing](#1-testing)
    - [Unit Test](#unit-testing)
    - [Integration Test](#integration-testing)
@@ -12,6 +12,10 @@ NOTE: PLEASE CHECK THE APP FOLDER TO SEE MORE DETAILS ABOUT THE IMPLEMENTATION O
 - [3. Github workflow](#)
 - [4. Deployement](#)
 
+## 0. Tools & Prerequisite
+- Nest.js 
+- Jest
+- docker
 
 ## 1. Testing 
 
