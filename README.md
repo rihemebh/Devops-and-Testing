@@ -42,19 +42,6 @@ While unit tests always take results from a single unit, such as a function call
 - Calling a web service
 - Running a command line
 
-Example : 
-
-**Code**
-
-```python
-
-```
-
-**Test**
-
-```python
-
-```
 
 
 ## E2E Testing
