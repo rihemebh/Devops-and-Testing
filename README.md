@@ -1,5 +1,22 @@
-# Software-Test
-## Unit Testing
+# Devops Pipeline
+
+NOTE: PLEASE CHECK THE APP FOLDER TO SEE MORE DETAILS ABOUT THE IMPLEMENTATION
+
+## Table od content
+
+- [1. Testing](1-testing)
+   - [Unit Test]
+- [2. CI/CD Pipeline]()
+- [3. Guthub workflow]()
+- [4. Deployement]()
+
+
+## 1. Testing 
+
+In this project we are using 3 types of tesing : 
+
+
+### Unit Testing
 
 Unit testing is a type of testing to check if the small piece of code or a single function is doing as per the expectation.
 Example :
@@ -40,8 +57,6 @@ While unit tests always take results from a single unit, such as a function call
 - Calling an HTTP REST API
 - Calling an API
 - Calling a web service
-
-
 
 
 ## E2E Testing
