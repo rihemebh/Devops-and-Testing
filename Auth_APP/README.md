@@ -5,10 +5,14 @@ The backend is tested with jest.
 
 ## How to test it 
 - Clone the repo
+- Open the project called  back 
 - Install dependencies : ``npm install && jest``
-- Launch test ``npm test``
-
+- Launch test ``npm test`` for unit and integration testing 
+- Launch test ``npm run test:e2e`` for unit and End to End testing 
 # Unit & Integration Testing
+
+
+
 
 ## Unit
 
