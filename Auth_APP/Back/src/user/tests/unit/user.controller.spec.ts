@@ -1,16 +1,16 @@
 import { Test } from '@nestjs/testing';
-import { userStub } from './stubs/user.stub';
-import { CreateUserDto } from './Dto/user.dto';
-import { User } from './model/user.model';
-import { UserController } from './user.controller';
-import { UserService } from './user.service';
+import { userStub } from '../stubs/user.stub';
+import { CreateUserDto } from '../../Dto/user.dto';
+import { User } from '../../model/user.model';
+import { UserController } from '../../user.controller';
+import { UserService } from '../../user.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { UserModel } from './__mocks__/user.model';
-import { MockUserService } from './__mocks__/user.service';
+import { UserModel } from './__mocks__/user.model.mock';
+import { MockUserService } from './__mocks__/user.service.mock';
 
-jest.mock('./__mocks__/user.service')
+jest.mock('./__mocks__/user.service.mock')
 
-describe('UserController', () => {
+describe('UserController unit testing', () => {
 
   let userController: UserController;
   let userService: UserService;

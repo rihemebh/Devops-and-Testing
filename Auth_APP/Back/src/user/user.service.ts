@@ -17,11 +17,11 @@ export class UserService {
    /* if (await this.userModel.findOne({ email:  userData.email })) {
       throw new ConflictException(`This email  is already used`);
     }*/
-    //const salt = await bcrypt.genSalt();
-    //const hashedPassword = await bcrypt.hash(userData.password, salt);
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(userData.password, salt);
     const user = await this.userModel.create({
       ...userData,
-     
+     password : hashedPassword
     });
 
 

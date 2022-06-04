@@ -10,7 +10,7 @@ export const UserSchema = new mongoose.Schema(
       maxlength: 255,
       minlength: 6,
     },
-    password: { type: String, select: false },
+    password: { type: String},
     phoneNumber: { type: String },
 
 

@@ -28,7 +28,7 @@ export class AuthService {
     if (user) {
       const testPassword = bcrypt.compareSync(password, user.password);
       if (testPassword) {
-        const payload = { email: user.email, sub: user._id };
+        const payload = { email: user.email};
         return payload;
       } else {
         throw new PreconditionFailedException('Wrong Credentials ');
@@ -39,7 +39,7 @@ export class AuthService {
     );
   }
 
-  async createToken(payload, expirationDate: number) {
+  async createToken(payload :LoginUserDto, expirationDate: number) {
     return {
       access_token: this.jwtService.sign(payload, {
         expiresIn: +expirationDate,

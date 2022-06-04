@@ -1,8 +1,8 @@
 import { User } from "src/user/model/user.model";
 
 export const userStub  = (): User => ({
-name : 'Riheme', 
-password: '12345678',
-email : 'riheme@gmail.com',
-phoneNumber : '23456987'
+name : 'jihene', 
+password: '123456789',
+email : 'jihene@gmail.com',
+phoneNumber : '28456987'
 } as User)
