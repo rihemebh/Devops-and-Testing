@@ -32,16 +32,19 @@ Integration testing is the phase of software testing in which individual softwar
 It follows unit testing and precedes system testing.
 Integration testing takes as its input **modules that have been unit tested**, groups them in larger aggregates, applies tests defined in an integration test plan to those aggregates, and delivers as its output the integrated system ready for system testing.
 
-What is the difference between unit and integration testing?
+#### What is the difference between unit and integration testing?
 While unit tests always take results from a single unit, such as a function call, integration tests may aggregate results from various parts and sources.
 
  Integration testing might require acting like a consumer or user of the application by:
 
 - Calling an HTTP REST API
-- Calling a Python API
+- Calling an API
 - Calling a web service
-- Running a command line
+
 
 
 
 ## E2E Testing
+
+
+End-to-end testing is a technique that tests the entire software product from beginning to end to ensure the application flow behaves as expected. It defines the product’s system dependencies and ensures all integrated pieces work together as expected.
