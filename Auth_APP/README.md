@@ -89,7 +89,7 @@ jest.mock('./__mocks__/user.service')
 
 #### References : 
 
-    - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
+   - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
     
     
 # Integration Testing 
@@ -159,5 +159,10 @@ describe('createUser', () => {
    
    <img src="https://github.com/rihemebh/Devops-and-Testing/blob/main/Auth_APP/unit_integration_result.PNG" />
    
+   
+   
+ ### Results of unit and integration testings 
+ 
+ <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/result.PNG" />
    
 # E2E Testing 
