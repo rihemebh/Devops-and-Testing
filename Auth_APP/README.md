@@ -1,9 +1,11 @@
 
 # About
 This app is developed with Nest.js and Angular.
-The backend is tested with jest.
+It allow you to create users and login.
 
-## How to test it 
+The backend is tested with jest : unit, integration and e2e testing.
+
+# How to test it 
 - Clone the repo
 - Open the project called  back 
 - Install dependencies : ``npm install && jest``
@@ -160,7 +162,7 @@ describe('createUser', () => {
    
 # E2E Testing 
 
-Example : 
+Example of testing user creation: 
 
 ```typescript
 it('should create a new user', ()=>{
@@ -177,8 +179,10 @@ it('should create a new user', ()=>{
 
 
 ```
-
+ <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/e2e_result.PNG" />
 ### Results
+
+
 ## References : 
 
  - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
