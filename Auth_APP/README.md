@@ -179,7 +179,7 @@ it('should create a new user', ()=>{
 
 
 ```
- <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/e2e_result.PNG" />
+ <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/e2e_results.PNG" />
 ### Results
 
 
