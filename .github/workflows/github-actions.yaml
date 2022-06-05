@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-template:latest
+          tags: dockerihem/delsos:${{ github.sha }}
   deploy:
     needs: Package
     runs-on: ubuntu-latest
