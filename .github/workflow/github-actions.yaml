@@ -1,4 +1,4 @@
-name: DevOps pipeline
+name: pipeline
 on: [push] 
 jobs:
   Test:
