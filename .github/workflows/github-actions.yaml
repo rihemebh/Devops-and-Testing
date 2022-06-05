@@ -37,4 +37,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: rihemebh/delsos:${{ github.sha }}
+          tags: dockeriheme/delsos:${{ github.sha }}
