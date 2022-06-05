@@ -15,7 +15,7 @@ services:
         networks:
             - nesjs-network
         volumes:
-            - .:/usr/src/app
+            - .:/usr/src
             - /usr/src/app/node_modules
         restart: unless-stopped
     prod:
