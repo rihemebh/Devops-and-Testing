@@ -16,4 +16,4 @@ jobs:
           echo APP_PORT = 3000 >> .env
           echo MORGAN_ENV = "dev" >> .env
       - run: npm test
-      - run: npm run test:e2e
+      #- run: npm run test:e2e
