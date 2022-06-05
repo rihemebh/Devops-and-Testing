@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: dockerihem/delsos:${{ github.sha }}
+          tags: dockerihem/delsos:b3427f709d93f01821864e818ceed6f8131040c8
   deploy:
     needs: Package
     runs-on: ubuntu-latest
