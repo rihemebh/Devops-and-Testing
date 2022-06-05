@@ -18,7 +18,6 @@ jobs:
             --name DelsosAuthDeployement \
             --resource-group Delsos-group \
             --template-file package-lock.json \
-            --parameters storageAccountType=Standard_GRS
 
 
        
