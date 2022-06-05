@@ -22,6 +22,7 @@
     "start:azure": "npm run build && func host start"
   },
   "dependencies": {
+    "@azure/arm-resources": "^5.0.1",
     "@nest-middlewares/cors": "^6.0.1",
     "@nestjs-modules/mailer": "^1.6.0",
     "@nestjs/common": "^8.0.0",
