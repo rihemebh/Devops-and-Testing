@@ -37,4 +37,24 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: dockeriheme/delsos:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/delsos:${{ github.sha }}
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses : azure/login@v1
+        with :
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: checkout source code
+        uses: actions/checkout@v2
+      - name: Deploy Delsos auth app 
+        uses: azure/CLI@v1
+        with: 
+          inlineScript: |
+            az deployment group create \
+            --name Delsos-auth-deployement \
+            --resource-group delsos-group \
+            --template-file package-lock.json \
+
+
+       
+      

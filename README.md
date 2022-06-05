@@ -3,14 +3,16 @@
 NOTE: PLEASE CHECK THE APP FOLDER TO SEE MORE DETAILS ABOUT THE IMPLEMENTATION OR CLICK [HERE](https://github.com/rihemebh/Devops-and-Testing/blob/main/Auth_APP/README.md)
 
 ## Table od content
-- [0. Tools and prerequisite](#0-tools-and-prerequisite)
-- [1. Testing](#1-testing)
-   - [Unit Test](#unit-testing)
-   - [Integration Test](#integration-testing)
-   - [E2E Test](#e2e-testing)
-- [2. CI/CD Pipeline](#)
-- [3. Github workflow](#)
-- [4. Deployement](#)
+- [Devops Pipeline](#devops-pipeline)
+  - [Table od content](#table-od-content)
+  - [0. Tools & Prerequisite](#0-tools--prerequisite)
+  - [1. Testing](#1-testing)
+    - [Unit Testing](#unit-testing)
+  - [Integration testing](#integration-testing)
+      - [What is the difference between unit and integration testing?](#what-is-the-difference-between-unit-and-integration-testing)
+  - [E2E Testing](#e2e-testing)
+  - [Github workflow](#github-workflow)
+    - [Refrences](#refrences)
 
 ## 0. Tools & Prerequisite
 - Nest.js 
@@ -111,3 +113,9 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:${{ github.sha }}
 
 ```
+
+
+
+### Refrences 
+
+- https://github.com/marketplace/actions/azure-login
