@@ -17,7 +17,7 @@ jobs:
             az deployment group create \
             --name DelsosAuthDeployement \
             --resource-group Delsos-group \
-            --template-file package-lock.json \
+            --template-file delsostemplate.json \
 
 
        

@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "metadata": {
+      "comments": "This template is for delsos auth deployement",
+      "author": "Riheme"
+    },
+    "parameters": {
+        "adminUsername": {
+          "type": "string",
+          "metadata": {
+            "description": "User name for the Virtual Machine."
+          }
+        }
+    },
+    "resources": [
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "apiVersion": "2018-07-01",
+              "name": "[concat('storage', uniqueString(resourceGroup().id))]",
+              "comments": "Storage account used to store VM disks",
+              "location": "[parameters('location')]",
+              "metadata": {
+                "comments": "These tags are needed for policy compliance."
+              },
+              "tags": {
+                "Dept": "[parameters('deptName')]",
+                "Environment": "[parameters('environment')]"
+              },
+              "sku": {
+                "name": "Standard_LRS"
+              },
+              "kind": "Storage",
+              "properties": {}
+            }
+        ]
+
+}
