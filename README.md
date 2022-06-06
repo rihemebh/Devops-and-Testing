@@ -1,6 +1,5 @@
 # Devops Pipeline
 
-NOTE: PLEASE CHECK THE APP FOLDER TO SEE MORE DETAILS ABOUT THE IMPLEMENTATION OR CLICK [HERE](https://github.com/rihemebh/Devops-and-Testing/blob/main/Auth_APP/README.md)
 
 ## Table od content
 - [Devops Pipeline](#devops-pipeline)
@@ -8,11 +7,12 @@ NOTE: PLEASE CHECK THE APP FOLDER TO SEE MORE DETAILS ABOUT THE IMPLEMENTATION O
   - [0. Tools & Prerequisite](#0-tools--prerequisite)
   - [1. Testing](#1-testing)
     - [Unit Testing](#unit-testing)
-  - [Integration testing](#integration-testing)
-      - [What is the difference between unit and integration testing?](#what-is-the-difference-between-unit-and-integration-testing)
-  - [E2E Testing](#e2e-testing)
+    - [Integration testing](#integration-testing)
+        - [What is the difference between unit and integration testing?](#what-is-the-difference-between-unit-and-integration-testing)
+     - [E2E Testing](#e2e-testing)
   - [Github workflow](#github-workflow)
-    - [Refrences](#refrences)
+  - [Azure_configuration](#azure-configuration)
+  - [Refrences](#refrences)
 
 ## 0. Tools & Prerequisite
 - Nest.js 
@@ -73,13 +73,14 @@ While unit tests always take results from a single unit, such as a function call
 End-to-end testing is a technique that tests the entire software product from beginning to end to ensure the application flow behaves as expected. It defines the product’s system dependencies and ensures all integrated pieces work together as expected.
 
 
-## Github workflow 
+## Github workflow
+
+### CI pipeline
+
+In this part we will automate the tests written in the previous chapter using github actions: 
 
 ```yaml
-name: DelSOS workflow
-on: [push]
-jobs: 
-  Test: 
+  Test:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -88,34 +89,48 @@ jobs:
         with:
           node-version: "14"
       - run: npm install
+      - run: |
+          touch .env
+          echo CONNECTION_STRING="${{ secrets.MONGO_CONNECTION_STRING }}" >> .env
+          echo APP_PORT = 3000 >> .env
+          echo MORGAN_ENV = "dev" >> .env
       - run: npm test
       - run: npm run test:e2e
-  build: 
-    runs-on: ubuntu-latest
-    needs: 
-      - Test
-    steps: 
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:${{ github.sha }}
 
 ```
+
+### Deployment with Azure web app 
+
+#### Steps: 
+- Create azure group 
+- Create azure plan : ``az appservice plan create 
+   --resource-group MY_RESOURCE_GROUP 
+   --name MY_APP_SERVICE_PLAN 
+   --is-linux``
+- Create azure web app : ``az webapp create 
+    --name MY_WEBAPP_NAME 
+    --plan MY_APP_SERVICE_PLAN 
+    --resource-group MY_RESOURCE_GROUP 
+    --runtime "NODE|14-lts"``
+- Add pulish profile to Github secrets 
+
+
+#### Deploy job : 
+```yaml
+    - name: 'Deploy to Azure WebApp'
+      id: deploy-to-webapp 
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+```
+
+### Github actions
 
 
 
 ### Refrences 
 
-- https://github.com/marketplace/actions/azure-login
+- https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-nodejs-to-azure-app-service
