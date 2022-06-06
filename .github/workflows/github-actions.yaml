@@ -35,7 +35,7 @@ jobs:
         echo APP_PORT = 3000 >> .env
         echo MORGAN_ENV = "dev" >> .env
     - name: npm build 
-      run: npm build --if-present
+      run: npm run-script build --if-present
   deploy:
     runs-on: ubuntu-latest
     needs: build
