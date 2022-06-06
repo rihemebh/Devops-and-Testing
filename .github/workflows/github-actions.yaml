@@ -14,7 +14,22 @@ env:
   NODE_VERSION: '14.x'                # set this to the node version to use
 
 jobs:
-
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - run: npm install
+      - run: |
+          touch .env
+          echo CONNECTION_STRING="${{ secrets.MONGO_CONNECTION_STRING }}" >> .env
+          echo APP_PORT = 3000 >> .env
+          echo MORGAN_ENV = "dev" >> .env
+      - run: npm test
+      - run: npm run test:e2e
   build:
     runs-on: ubuntu-latest
     steps:
