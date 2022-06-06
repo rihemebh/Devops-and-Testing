@@ -208,7 +208,7 @@ describe('createUser', () => {
    
  #### Results:
  
- <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/result.PNG" />
+ <img src="https://github.com/rihemebh/Devops-and-Testing/blob/main/result.PNG" />
    
 ### E2E Testing
 
@@ -236,7 +236,7 @@ it('should create a new user', ()=>{
   
 #### Results
   
- <img src="https://github.com/rihemebh/Software-Test/blob/main/Auth_APP/e2e_results.PNG" />
+ <img src="https://github.com/rihemebh/Devops-and-Testing/blob/main/e2e_results.PNG" />
 
 ## Github workflow
 
@@ -295,3 +295,4 @@ In this part we will automate the tests written in the previous chapter using gi
 ## Refrences 
 - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
 - https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-nodejs-to-azure-app-service
+- https://docs.microsoft.com/en-us/azure/devops/pipelines/release/artifacts?view=azure-devops
