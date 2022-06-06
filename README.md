@@ -32,7 +32,7 @@ This app is developed with Nest.js, it is an auth app tested with Jest: : unit, 
 - Launch test ``npm test`` for unit and integration testing 
 - Launch test ``npm run test:e2e`` for unit and End to End testing 
 - Create Azure webapp 
-- App the webapp's profile publish to github secrets
+- Add the webapp's profile publish to github secrets
 - Push to deploy  
 
 You app will be available for you via this link: https://<your-webapp-name>.azurewebsites.net
