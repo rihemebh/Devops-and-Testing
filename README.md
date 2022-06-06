@@ -35,10 +35,6 @@ This app is developed with Nest.js, it is an auth app tested with Jest: : unit, 
 - Add the webapp's profile publish to github secrets
 - Push to deploy  
 
-You app will be available for you via this link: https://<your-webapp-name>.azurewebsites.net
-
-For my case it is : https://delsos-app.azurewebsites.net
-  
 
 ## 1. Testing 
 
@@ -269,7 +265,7 @@ In this part we will automate the tests written in the previous chapter using gi
 
 ```
 
-### Deployment with Azure web app 
+### CD : Deployment with Azure web app 
 
 #### Steps: 
 - Create azure group 
@@ -287,6 +283,28 @@ In this part we will automate the tests written in the previous chapter using gi
 
 #### Deploy job : 
 ```yaml
+ build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: npm install
+      run: npm install
+    - name: .env settings
+      run: |
+        touch .env
+        echo CONNECTION_STRING="${{ secrets.MONGO_CONNECTION_STRING }}" >> .env
+        echo APP_PORT = 3000 >> .env
+        echo MORGAN_ENV = "dev" >> .env
+    - name: npm build 
+      run: npm run-script build --if-present
+deploy:
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp 
       uses: azure/webapps-deploy@v2
@@ -297,6 +315,8 @@ In this part we will automate the tests written in the previous chapter using gi
 
 ```
 
+  
+ <img src="https://github.com/rihemebh/Devops-and-Testing/blob/main/deploy_results.PNG" />
 ## Refrences 
 - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
 - https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-nodejs-to-azure-app-service
