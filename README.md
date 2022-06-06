@@ -5,9 +5,8 @@ This app is developed with Nest.js, it is an auth app tested with Jest: : unit, 
 
 
 ## Table of content
-- [Devops Pipeline](#devops-pipeline)
-  - [Table od content](#table-od-content)
-  - [0. Preferences](#0-preferences)
+
+  - [0. Before we start ](#0-before-we-start)
   - [1. Testing](#1-testing)
     - [Unit Testing](#unit-testing)
     - [Integration testing](#integration-testing)
@@ -19,7 +18,7 @@ This app is developed with Nest.js, it is an auth app tested with Jest: : unit, 
     - [Deployment with Azure webapp](#deployement-with-azure-webapp)
   - [References](#refrences)
 
-## 0. Preferences
+## 0. Before we start 
 
 ### Tools
 - Azure account 
