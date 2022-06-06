@@ -15,7 +15,7 @@ This app is developed with Nest.js, it is an auth app tested with Jest: : unit, 
      - [User acceptance Testing](#user-acceptance-testing)
   - [Github workflow](#github-workflow)
     - [Continuous Integration pipeline](#ci-pipeline)
-    - [Deployment with Azure webapp](#deployement-with-azure-webapp)
+    - [Continous delivery](#cd-deployement-with-azure-webapp)
   - [References](#refrences)
 
 ## 0. Before we start 
