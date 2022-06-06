@@ -13,6 +13,7 @@ This app is developed with Nest.js, it is an auth app tested with Jest: : unit, 
     - [Integration testing](#integration-testing)
         - [What is the difference between unit and integration testing?](#what-is-the-difference-between-unit-and-integration-testing)
      - [E2E Testing](#e2e-testing)
+     - [User acceptance Testing](#user-acceptance-testing)
   - [Github workflow](#github-workflow)
     - [Continuous Integration pipeline](#ci-pipeline)
     - [Deployment with Azure webapp](#deployement-with-azure-webapp)
@@ -234,9 +235,14 @@ it('should create a new user', ()=>{
 
 ```
   
+
+  
 #### Results
   
  <img src="https://github.com/rihemebh/Devops-and-Testing/blob/main/e2e_results.PNG" />
+  
+### User Acceptance Testing
+  
 
 ## Github workflow
 
