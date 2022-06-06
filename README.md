@@ -316,7 +316,9 @@ deploy:
 ```
 
   
- <img src="https://github.com/rihemebh/Devops-and-Testing/blob/main/deploy_results.PNG" />
+ <img src="https://github.com/rihemebh/Devops-and-Testing/blob/main/deploy_result.PNG" />
+ 
+ 
 ## Refrences 
 - https://github.com/mguay22/nestjs-mongo/tree/abstract-repository
 - https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-nodejs-to-azure-app-service
