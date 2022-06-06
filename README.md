@@ -280,8 +280,8 @@ In this part we will automate the tests written in the previous chapter using gi
     --runtime "NODE|14-lts"``
 - Add pulish profile to Github secrets 
 
+- Build: in the build part we need to configue node enviorement, install dependencies and run tests
 
-#### Deploy job : 
 ```yaml
  build:
     runs-on: ubuntu-latest
@@ -304,7 +304,18 @@ In this part we will automate the tests written in the previous chapter using gi
         echo MORGAN_ENV = "dev" >> .env
     - name: npm build 
       run: npm run-script build --if-present
+```
+
+
+
+- Deploy  : At this stage all we have to do is using the deploy artifacts already installed in the build part
+
+```yaml
+
 deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp 
       uses: azure/webapps-deploy@v2
@@ -314,6 +325,8 @@ deploy:
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
 ```
+
+
 
   
  <img src="https://github.com/rihemebh/Devops-and-Testing/blob/main/deploy_result.PNG" />
