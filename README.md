@@ -5,8 +5,7 @@ This app is developed with Nest.js, it is an auth app tested with Jest: : unit, 
 
 
 ## Table of content
-- [Devops Pipeline](#devops-pipeline)
-  - [Table od content](#table-od-content)
+
   - [0. Preferences](#0-preferences)
   - [1. Testing](#1-testing)
     - [Unit Testing](#unit-testing)
