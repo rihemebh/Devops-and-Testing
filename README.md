@@ -238,6 +238,7 @@ it('should create a new user', ()=>{
   
 ### User Acceptance Testing
   
+[Click here to get the document](https://github.com/rihemebh/Devops-and-Testing/blob/main/Delsos-user-acceptance-testing.pdf)
 
 ## Github workflow
 
